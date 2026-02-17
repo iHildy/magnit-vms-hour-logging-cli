@@ -2,6 +2,12 @@
 
 Deterministic Go CLI for logging hours to `prowand.pro-unlimited.com`.
 
+## Install
+
+```bash
+go install github.com/ihildy/magnit-vms-hour-logging-cli/cmd/hours@latest
+```
+
 This CLI does **not** parse natural language and does **not** call AI models. It accepts structured command input so humans or external automation can drive it safely.
 
 ## Commands

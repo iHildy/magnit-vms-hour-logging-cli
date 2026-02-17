@@ -1,0 +1,16 @@
+# Build artifacts
+hours
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Sensitive capture files
+*.har
+
+# OS/editor
+.DS_Store
+
+# Local config/state
+.env
+*.log

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hour Logging CLI (Non-Interactive)"
+  short_description: "Run deterministic hour logging commands via CLI."
+  default_prompt: "Use $hour-logging-cli-non-interactive to log work hours in non-interactive mode."

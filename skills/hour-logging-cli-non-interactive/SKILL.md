@@ -45,7 +45,7 @@ Prefer `--json`, `--yes`, `--engagement`, and `--password` where needed to avoid
 Authentication:
 
 ```bash
-./hours auth login --username "$HOURS_USERNAME" --password "$HOURS_PASSWORD"
+printf '%s' "$HOURS_PASSWORD" | ./hours auth login --username "$HOURS_USERNAME" --password-stdin
 ./hours auth status --json
 ```
 

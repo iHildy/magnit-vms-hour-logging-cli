@@ -1,6 +1,6 @@
 # magnit-vms-cli
 
-Deterministic Go CLI for logging hours to `prowand.pro-unlimited.com`.
+Deterministic Go CLI for logging hours to `prowand.pro-unlimited.com` (magnit vms).
 
 ## Install
 

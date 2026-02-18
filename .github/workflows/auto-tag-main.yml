@@ -1,0 +1,67 @@
+name: auto-tag-main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Create and push next patch tag
+        id: next_tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --tags --force
+
+          created_tag=""
+          for _ in $(seq 1 20); do
+            latest_tag="$(git tag -l 'v[0-9]*.[0-9]*.[0-9]*' | sort -V | tail -n 1)"
+            if [ -z "$latest_tag" ]; then
+              latest_tag="v0.0.0"
+            fi
+
+            version="${latest_tag#v}"
+            IFS='.' read -r major minor patch <<< "$version"
+            next_tag="v${major}.${minor}.$((patch + 1))"
+
+            if git rev-parse -q --verify "refs/tags/$next_tag" > /dev/null; then
+              git fetch --tags --force
+              continue
+            fi
+
+            git tag -a "$next_tag" -m "Release $next_tag"
+            if git push origin "$next_tag"; then
+              created_tag="$next_tag"
+              break
+            fi
+
+            git tag -d "$next_tag" || true
+            git fetch --tags --force
+            sleep 1
+          done
+
+          if [ -z "$created_tag" ]; then
+            echo "Failed to create a new tag after retries" >&2
+            exit 1
+          fi
+
+          echo "tag=$created_tag" >> "$GITHUB_OUTPUT"
+
+      - name: Summary
+        run: echo "Created ${{ steps.next_tag.outputs.tag }}"

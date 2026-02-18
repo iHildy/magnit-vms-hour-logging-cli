@@ -1,15 +1,15 @@
 version: 2
 
-project_name: magnit-vms-hour-logging-cli
+project_name: magnit-vms-cli
 
 before:
   hooks:
     - go mod tidy
 
 builds:
-  - id: hours
-    main: ./cmd/hours
-    binary: hours
+  - id: magnit
+    main: ./cmd/magnit
+    binary: magnit
     env:
       - CGO_ENABLED=0
     goos:
@@ -25,7 +25,7 @@ builds:
       - -s -w
 
 archives:
-  - id: hours-archives
+  - id: magnit-archives
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     formats:
       - tar.gz

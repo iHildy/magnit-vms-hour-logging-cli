@@ -10,7 +10,7 @@ func NewRootCmd() *cobra.Command {
 	app := NewApp()
 
 	cmd := &cobra.Command{
-		Use:           "hours",
+		Use:           "magnit",
 		Short:         "Log work hours to the Pro Unlimited worker API",
 		SilenceUsage:  true,
 		SilenceErrors: true,

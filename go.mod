@@ -1,4 +1,4 @@
-module github.com/ihildy/magnit-vms-hour-logging-cli
+module github.com/ihildy/magnit-vms-cli
 
 go 1.23
 

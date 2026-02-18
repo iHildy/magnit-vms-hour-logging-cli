@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/auth"
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/config"
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/output"
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/timecard"
+	"github.com/ihildy/magnit-vms-cli/internal/auth"
+	"github.com/ihildy/magnit-vms-cli/internal/config"
+	"github.com/ihildy/magnit-vms-cli/internal/output"
+	"github.com/ihildy/magnit-vms-cli/internal/timecard"
 
 	"github.com/spf13/cobra"
 )

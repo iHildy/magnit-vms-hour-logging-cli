@@ -1,20 +1,20 @@
-# magnit-vms-hour-logging-cli
+# magnit-vms-cli
 
 Deterministic Go CLI for logging hours to `prowand.pro-unlimited.com`.
 
 ## Install
 
 ```bash
-go install github.com/ihildy/magnit-vms-hour-logging-cli/cmd/hours@latest
+go install github.com/ihildy/magnit-vms-cli/cmd/magnit@latest
 ```
 
-If you see `command not found: hours`, add Go's bin directory to your `PATH`:
+If you see `command not found: magnit`, add Go's bin directory to your `PATH`:
 
 ```bash
 echo 'export PATH="$PATH:$HOME/go/bin"' >> ~/.zshrc
 source ~/.zshrc
 rehash
-hours --help
+magnit --help
 ```
 
 ## Setup (Skill)
@@ -22,22 +22,22 @@ hours --help
 Install this repo's skill for agents to log hours for you:
 
 ```bash
-npx skills add https://github.com/ihildy/magnit-vms-hour-logging-cli --skill hour-logging-cli-non-interactive
+npx skills add https://github.com/ihildy/magnit-vms-cli --skill magnit-vms-cli-non-interactive
 ```
 
 This CLI does **not** parse natural language and does **not** call AI models. It accepts structured command input so humans or external automation can drive it safely.
 
 ## Commands
 
-- `hours auth login --username <email> [--password '<password>' | --password-stdin]`
-- `hours auth status`
-- `hours auth logout`
-- `hours engagement list`
-- `hours config set-default-engagement --id <engagement_id>`
-- `hours config set-timezone --tz <IANA_TZ>`
-- `hours show --date YYYY-MM-DD [--engagement ID] [--json]`
-- `hours set --date YYYY-MM-DD --span labor:09:00-12:00 --span lunch:12:00-12:30 --span labor:12:30-17:00 [--engagement ID] [--dry-run] [--yes] [--json]`
-- `hours mark-dnw --date YYYY-MM-DD [--engagement ID] [--dry-run] [--yes] [--json]`
+- `magnit auth login --username <email> [--password '<password>' | --password-stdin]`
+- `magnit auth status`
+- `magnit auth logout`
+- `magnit engagement list`
+- `magnit config set-default-engagement --id <engagement_id>`
+- `magnit config set-timezone --tz <IANA_TZ>`
+- `magnit show --date YYYY-MM-DD [--engagement ID] [--json]`
+- `magnit set --date YYYY-MM-DD --span labor:09:00-12:00 --span lunch:12:00-12:30 --span labor:12:30-17:00 [--engagement ID] [--dry-run] [--yes] [--json]`
+- `magnit mark-dnw --date YYYY-MM-DD [--engagement ID] [--dry-run] [--yes] [--json]`
 
 ## Behavior
 
@@ -51,7 +51,7 @@ This CLI does **not** parse natural language and does **not** call AI models. It
 
 ```bash
 go mod tidy
-go build ./cmd/hours
+go build ./cmd/magnit
 ```
 
 ## Login Examples
@@ -59,25 +59,25 @@ go build ./cmd/hours
 Interactive password prompt:
 
 ```bash
-./hours auth login --username your-email@example.com
+./magnit auth login --username your-email@example.com
 ```
 
 Non-interactive password flag:
 
 ```bash
-./hours auth login --username your-email@example.com --password 'your-password'
+./magnit auth login --username your-email@example.com --password 'your-password'
 ```
 
 Non-interactive stdin password (safest for special characters like `&`, `$`, `*`, `^`):
 
 ```bash
-printf '%s' 'b5&$^*1h6' | ./hours auth login --username your-email@example.com --password-stdin
+printf '%s' 'b5&$^*1h6' | ./magnit auth login --username your-email@example.com --password-stdin
 ```
 
 Check auth:
 
 ```bash
-./hours auth status --json
+./magnit auth status --json
 ```
 
 ## Notes

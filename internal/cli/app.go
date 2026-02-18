@@ -10,10 +10,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/api"
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/auth"
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/config"
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/keyring"
+	"github.com/ihildy/magnit-vms-cli/internal/api"
+	"github.com/ihildy/magnit-vms-cli/internal/auth"
+	"github.com/ihildy/magnit-vms-cli/internal/config"
+	"github.com/ihildy/magnit-vms-cli/internal/keyring"
 
 	"golang.org/x/term"
 )
@@ -60,7 +60,7 @@ func (a *App) BaseURL() string {
 func (a *App) NewAuthedClient(ctx context.Context) (*api.Client, map[string]any, *httpContext, error) {
 	creds, err := keyring.LoadCredentials()
 	if err != nil {
-		return nil, nil, nil, fmt.Errorf("credentials unavailable, run `hours auth login` first: %w", err)
+		return nil, nil, nil, fmt.Errorf("credentials unavailable, run `magnit auth login` first: %w", err)
 	}
 
 	httpClient, err := auth.NewHTTPClient()
@@ -129,7 +129,7 @@ func (a *App) ResolveEngagementID(ctx context.Context, client *api.Client, overr
 	}
 
 	if !a.IsInteractive() {
-		return 0, fmt.Errorf("no default engagement configured; set one via `hours config set-default-engagement --id <id>` or pass --engagement")
+		return 0, fmt.Errorf("no default engagement configured; set one via `magnit config set-default-engagement --id <id>` or pass --engagement")
 	}
 
 	fmt.Fprintln(a.Stderr, "Select engagement:")

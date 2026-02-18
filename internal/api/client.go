@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/auth"
+	"github.com/ihildy/magnit-vms-cli/internal/auth"
 )
 
 type Client struct {

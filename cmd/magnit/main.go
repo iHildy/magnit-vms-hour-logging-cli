@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/cli"
+	"github.com/ihildy/magnit-vms-cli/internal/cli"
 )
 
 func main() {

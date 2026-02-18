@@ -1,65 +1,65 @@
 ---
-name: hour-logging-cli-non-interactive
-description: Use this skill to run the `hours` CLI in fully non-interactive mode for authentication, logging, and verification. Trigger when an agent must log work hours deterministically via command flags (not natural language), avoid prompts, emit JSON for automation, or operate in CI/headless execution.
+name: magnit-vms-cli-non-interactive
+description: Use this skill to run the `magnit` CLI in fully non-interactive mode for authentication, logging, and verification. Trigger when an agent must log work hours deterministically via command flags (not natural language), avoid prompts, emit JSON for automation, or operate in CI/headless execution.
 ---
 
-# Hour Logging CLI Non-Interactive
+# Magnit VMS CLI Non-Interactive
 
 ## Overview
 
-Execute `hours` commands with explicit flags so the run is deterministic, scriptable, and prompt-free.
+Execute `magnit` commands with explicit flags so the run is deterministic, scriptable, and prompt-free.
 Prefer `--json`, `--yes`, `--engagement`, and `--password-stdin` where needed to avoid interactive input.
 
 ## Non-Interactive Workflow
 
 1. Resolve executable:
-- Prefer `./hours` if present in the repo root.
-- If missing, run `go build ./cmd/hours` first.
+- Prefer `./magnit` if present in the repo root.
+- If missing, run `go build ./cmd/magnit` first.
 
 2. Authenticate non-interactively:
-- Run `./hours auth login --username <email> --password '<password>'`.
-- Alternative for complex passwords: `printf '%s' '<password>' | ./hours auth login --username <email> --password-stdin`.
+- Run `./magnit auth login --username <email> --password '<password>'`.
+- Alternative for complex passwords: `printf '%s' '<password>' | ./magnit auth login --username <email> --password-stdin`.
 
 3. Verify authentication:
-- Run `./hours auth status --json`.
+- Run `./magnit auth status --json`.
 - Proceed only when `"authenticated": true`.
 
 4. Configure defaults (optional but recommended):
-- Set engagement once: `./hours config set-default-engagement --id <engagement_id>`.
-- Set timezone once: `./hours config set-timezone --tz <IANA_TZ>`.
+- Set engagement once: `./magnit config set-default-engagement --id <engagement_id>`.
+- Set timezone once: `./magnit config set-timezone --tz <IANA_TZ>`.
 
 5. Run logging operations:
 - Set day spans (authoritative replace):
-`./hours set --date YYYY-MM-DD --span labor:09:00-12:00 --span lunch:12:00-12:30 --span labor:12:30-17:00 --engagement <id> --yes --json`
+`./magnit set --date YYYY-MM-DD --span labor:09:00-12:00 --span lunch:12:00-12:30 --span labor:12:30-17:00 --engagement <id> --yes --json`
 - Mark did-not-work day:
-`./hours mark-dnw --date YYYY-MM-DD --engagement <id> --yes --json`
+`./magnit mark-dnw --date YYYY-MM-DD --engagement <id> --yes --json`
 - Read back day state:
-`./hours show --date YYYY-MM-DD --engagement <id> --json`
+`./magnit show --date YYYY-MM-DD --engagement <id> --json`
 
 6. Use dry-run before write when safety is required:
-- `./hours set ... --dry-run --json`
-- `./hours mark-dnw ... --dry-run --json`
+- `./magnit set ... --dry-run --json`
+- `./magnit mark-dnw ... --dry-run --json`
 
 ## Command Patterns
 
 Authentication:
 
 ```bash
-./hours auth login --username "$HOURS_USERNAME" --password "$HOURS_PASSWORD"
+./magnit auth login --username "$MAGNIT_USERNAME" --password "$MAGNIT_PASSWORD"
 or
-printf '%s' "$HOURS_PASSWORD" | ./hours auth login --username "$HOURS_USERNAME" --password-stdin
-./hours auth status --json
+printf '%s' "$MAGNIT_PASSWORD" | ./magnit auth login --username "$MAGNIT_USERNAME" --password-stdin
+./magnit auth status --json
 ```
 
 Set hours for one day:
 
 ```bash
-./hours set \
+./magnit set \
   --date 2026-02-18 \
   --span labor:09:00-12:00 \
   --span lunch:12:00-12:30 \
   --span labor:12:30-17:00 \
-  --engagement "$HOURS_ENGAGEMENT_ID" \
+  --engagement "$MAGNIT_ENGAGEMENT_ID" \
   --yes \
   --json
 ```
@@ -67,13 +67,13 @@ Set hours for one day:
 Mark day as did-not-work:
 
 ```bash
-./hours mark-dnw --date 2026-02-19 --engagement "$HOURS_ENGAGEMENT_ID" --yes --json
+./magnit mark-dnw --date 2026-02-19 --engagement "$MAGNIT_ENGAGEMENT_ID" --yes --json
 ```
 
 Verify day:
 
 ```bash
-./hours show --date 2026-02-18 --engagement "$HOURS_ENGAGEMENT_ID" --json
+./magnit show --date 2026-02-18 --engagement "$MAGNIT_ENGAGEMENT_ID" --json
 ```
 
 ## Reliability Rules
@@ -84,7 +84,7 @@ Verify day:
 - Always use `YYYY-MM-DD` dates and `type:HH:MM-HH:MM` spans.
 - Treat non-zero exit status as failure.
 - Prefer `--password-stdin` for passwords with shell-sensitive characters and to reduce shell-history/process-list exposure:
-`printf '%s' "$HOURS_PASSWORD" | ./hours auth login --username "$HOURS_USERNAME" --password-stdin`.
+`printf '%s' "$MAGNIT_PASSWORD" | ./magnit auth login --username "$MAGNIT_USERNAME" --password-stdin`.
 
 ## Failure Handling
 

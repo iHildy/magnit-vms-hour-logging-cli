@@ -43,7 +43,7 @@ func (a *Authenticator) Login(ctx context.Context, username, password string) er
 		return fmt.Errorf("build login request: %w", err)
 	}
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Set("User-Agent", "hour-logging-cli/1.0")
+	req.Header.Set("User-Agent", "magnit-vms-cli/1.0")
 
 	resp, err := a.Client.Do(req)
 	if err != nil {

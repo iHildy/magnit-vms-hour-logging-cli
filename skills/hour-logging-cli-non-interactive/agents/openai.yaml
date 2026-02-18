@@ -1,4 +1,4 @@
 interface:
-  display_name: "Hour Logging CLI (Non-Interactive)"
-  short_description: "Run deterministic hour logging commands via CLI."
-  default_prompt: "Use $hour-logging-cli-non-interactive to log work hours in non-interactive mode."
+  display_name: "Magnit VMS CLI (Non-Interactive)"
+  short_description: "Run deterministic Magnit VMS time logging commands via CLI."
+  default_prompt: "Use $magnit-vms-cli-non-interactive to log work time in non-interactive mode."

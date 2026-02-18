@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/output"
+	"github.com/ihildy/magnit-vms-cli/internal/output"
 
 	"github.com/spf13/cobra"
 )

@@ -9,9 +9,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/auth"
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/keyring"
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/output"
+	"github.com/ihildy/magnit-vms-cli/internal/auth"
+	"github.com/ihildy/magnit-vms-cli/internal/keyring"
+	"github.com/ihildy/magnit-vms-cli/internal/output"
 
 	"github.com/spf13/cobra"
 	"golang.org/x/term"

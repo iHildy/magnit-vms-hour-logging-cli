@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ihildy/magnit-vms-hour-logging-cli/internal/timecard"
+	"github.com/ihildy/magnit-vms-cli/internal/timecard"
 )
 
 func parseAndValidateSpans(raw []string) ([]timecard.Span, error) {

@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	serviceName = "magnit-vms-hour-logging-cli"
+	serviceName = "magnit-vms-cli"
 	userKey     = "username"
 	passKey     = "password"
 )

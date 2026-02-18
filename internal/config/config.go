@@ -12,7 +12,7 @@ import (
 
 const (
 	defaultBaseURL = "https://prowand.pro-unlimited.com"
-	configDirName  = "hour-logging"
+	configDirName  = "magnit-vms-cli"
 	configFileName = "config.yaml"
 )
 

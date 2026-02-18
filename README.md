@@ -8,6 +8,15 @@ Deterministic Go CLI for logging hours to `prowand.pro-unlimited.com`.
 go install github.com/ihildy/magnit-vms-hour-logging-cli/cmd/hours@latest
 ```
 
+If you see `command not found: hours`, add Go's bin directory to your `PATH`:
+
+```bash
+echo 'export PATH="$PATH:$HOME/go/bin"' >> ~/.zshrc
+source ~/.zshrc
+rehash
+hours --help
+```
+
 ## Setup (Skill)
 
 Install this repo's skill for agents to log hours for you:
